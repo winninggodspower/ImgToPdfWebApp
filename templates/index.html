@@ -6,6 +6,9 @@
 				<title>Page title</title>
 </head>
 <body>
+		
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_y2ryub2r.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
 				<form method="post" enctype="multipart/form-data" action="/process">
 								
 				<input type="file" name="images" multiple>
@@ -17,5 +20,7 @@
 			{% if pdfFile %}
 			    <a href="{{url_for('getPdf')}}">download pdf</a>
 			{% endif %}
+			
+					<img src="../fileAnimae.gif" alt="why" autoplay>
 </body>
 </html>
