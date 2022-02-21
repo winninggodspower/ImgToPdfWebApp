@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template,request,flash,send_file
 from werkzeug.utils import secure_filename
 import webbrowser
-import os,sys
+import os,sys,logging
 
 from utilities.convert import ImagesToPdf
 
@@ -10,6 +10,12 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "something secret"
 app.config["file_path"] = "pictures"
 app.config["pdfFile_path"] = "pdf/merge.pdf"
+
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
+
 
 server_port = sys.argv[1]
 
