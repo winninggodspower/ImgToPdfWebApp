@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Notes Merger</title>
+    <link rel="stylesheet" href="../static/css/output.css">
+</head>
+<body class="">	
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <main class="flex flex-col md:flex-row mt-15">
+        <div class="grow flex flex-col items-center px-4 mb-6">
+            <lottie-player class="w-11/12 max-w-[350px] h-min" src="https://assets6.lottiefiles.com/private_files/lf30_y2ryub2r.json" background="transparent" speed="1" loop autoplay></lottie-player>
+
+            <form class="border-2 border-dashed border-blue-500 py-6 px-4 md:py-10 md:px-6 rounded-lg w-full max-w-[400px]" method="post" enctype="multipart/form-data" action="/process">
+                <img class="mx-auto" src="../static/img/picture-note-outline.png" width="55px" alt="">
+                <p class="opacity-80 text-gray-500 text-center mt-2 text-sm md:text-base">Drop in your note pictures here</p>
+                <p class="block text-center text-sm text-gray-500 opacity-80">or <label for="images" class="text-blue-500 underline cursor-pointer">upload files</label></p>
+                <input class="hidden" type="file" name="images" id="images" accept="image/*" multiple required>
+                <input class="hidden" type='submit' value='Upload'>
+            </form>
+        </div>
+
+        <div id="previewArea" class="hidden flex-col items-center md:w-4/12 px-4 mb-6 md:mt-6">
+            <div class="rounded-xl mb-2 h-[80px] border-blue-300 border-2 bg-gray-100 bg-opacity-50 p-2 hover:shadow-md cursor-pointer">
+                <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
+            </div>
+        </div>
+    </main>
+		
+    <script src="../static/js/fileUploadHandler.js"></script>
+</body>
+</html>

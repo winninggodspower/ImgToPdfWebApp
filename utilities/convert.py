@@ -2,11 +2,11 @@ from PIL import Image
 import os
 import pathlib
 import shutil
-import  PyPDF2
+from PyPDF2 import PdfWriter
 
 
 class ImagesToPdf:
-    def __init__(self,img_path,new_pdf_path,file_name):
+    def __init__(self, img_path, new_pdf_path, file_name):
         self.img_path = img_path
         self.new_pdf_path = new_pdf_path
         self.filename = file_name
@@ -31,7 +31,7 @@ class ImagesToPdf:
             new_file_name = pathlib.Path(image).stem + ".pdf"
             pdf_file_path = os.path.join(new_path,new_file_name)
             
-            img.save(pdf_file_path,format="PDF")
+            img.save(pdf_file_path, format="PDF")
             
             #metging pdf file by calling the function
         self.MergePdf(new_path,self.new_pdf_path,self.filename)
@@ -39,18 +39,19 @@ class ImagesToPdf:
             
 
     def MergePdf(self,pdf_path,new_pdf_path,new_file_name):
-         #creating new pdf object
-         pdfMerger = PyPDF2.PdfFileMerger()
-         
-         #looping through the pdf files
-         for pdf in os.listdir(pdf_path):
-             pdf_file_path = os.path.join(pdf_path,pdf)
-             pdfMerger.append(pdf_file_path)
-             
-         #saving the pdf file
-         new_path = os.path.join(new_pdf_path,new_file_name)
-         with open(new_path,"wb") as pdf_file:
-             pdfMerger.write(pdf_file)
+        #creating new pdf object
+        merger = PdfWriter()
+        
+        #looping through the pdf files
+        for pdf in os.listdir(pdf_path):
+            pdf_file_path = os.path.join(pdf_path,pdf)
+            merger.append(pdf_file_path)
+            
+        #saving the pdf file
+        new_path = os.path.join(new_pdf_path, new_file_name)
+        with open(new_path,"wb") as pdf_file:
+            merger.write(pdf_file)
+
              
          
              
