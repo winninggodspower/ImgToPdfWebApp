@@ -6,10 +6,10 @@
 	<title>Notes Merger</title>
     <link rel="stylesheet" href="../static/css/output.css">
 </head>
-<body class="">	
+<body class="overflow-x-hidden">	
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
-    <main class="flex flex-col md:flex-row mt-15">
+    <main class="grid md:grid-cols-[1fr_auto] gap-4 mt-15 w-fit mx-auto">
         <div class="grow flex flex-col items-center px-4 mb-6">
             <lottie-player class="w-11/12 max-w-[350px] h-min" src="https://assets6.lottiefiles.com/private_files/lf30_y2ryub2r.json" background="transparent" speed="1" loop autoplay></lottie-player>
 
@@ -22,13 +22,15 @@
             </form>
         </div>
 
-        <div id="previewArea" class="hidden flex-col items-center md:w-4/12 px-4 mb-6 md:mt-6">
-            <div class="rounded-xl mb-2 h-[80px] border-blue-300 border-2 bg-gray-100 bg-opacity-50 p-2 hover:shadow-md cursor-pointer">
-                <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
+        <div id="previewAreaWrapper" class="px-4 mx-auto max-w-[95vw] overflow-x-hidden">
+            <div id="previewArea" class="hidden flex-col items-center mx-auto w-[400px] max-w-full mb-6 md:mt-10 styled-border p-3 md:p-4">
+                <div class="rounded-xl mb-2 h-[80px] border-blue-300 border-2 bg-gray-100 bg-opacity-50 p-2 hover:shadow-md cursor-pointer">
+                    <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
+                </div>
             </div>
         </div>
     </main>
 		
-    <script src="../static/js/fileUploadHandler.js"></script>
+    <script src="../static/js/index.js" type="module"></script>
 </body>
 </html>

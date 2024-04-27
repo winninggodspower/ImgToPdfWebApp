@@ -522,9 +522,12 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
+.styled-border {
+  border-radius: 0.5rem;
+  border-width: 2px;
+  border-style: dashed;
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
 .mx-auto {
@@ -532,25 +535,21 @@ video {
   margin-right: auto;
 }
 
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
 .mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .block {
@@ -559,6 +558,10 @@ video {
 
 .flex {
   display: flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -582,12 +585,17 @@ video {
   width: 91.666667%;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .w-\[400px\] {
   width: 400px;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .max-w-\[350px\] {
@@ -598,12 +606,16 @@ video {
   max-width: 400px;
 }
 
-.max-w-\[400p\] {
-  max-width: 400p;
+.max-w-\[90vw\] {
+  max-width: 90vw;
 }
 
 .max-w-full {
   max-width: 100%;
+}
+
+.max-w-\[95vw\] {
+  max-width: 95vw;
 }
 
 .grow {
@@ -620,6 +632,14 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 
 .rounded-lg {
@@ -648,11 +668,6 @@ video {
   border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .bg-blue-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
@@ -667,12 +682,16 @@ video {
   --tw-bg-opacity: 0.5;
 }
 
-.bg-opacity-20 {
-  --tw-bg-opacity: 0.2;
-}
-
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .px-4 {
@@ -723,16 +742,16 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:mt-6 {
-    margin-top: 1.5rem;
+  .md\:mt-10 {
+    margin-top: 2.5rem;
   }
 
-  .md\:w-4\/12 {
-    width: 33.333333%;
+  .md\:grid-cols-\[1fr_auto\] {
+    grid-template-columns: 1fr auto;
   }
 
-  .md\:flex-row {
-    flex-direction: row;
+  .md\:p-4 {
+    padding: 1rem;
   }
 
   .md\:px-6 {

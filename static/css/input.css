@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .styled-border{
+        @apply border-2 border-dashed border-blue-500 rounded-lg;
+    }
+}

@@ -1,5 +1,5 @@
 let formContainer = document.querySelector("form");
-let inputField = document.querySelector("input[name='images']");
+let fileInput = document.querySelector("input[name='images']");
 
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
   formContainer.addEventListener(eventName, preventDefaults, false);
@@ -31,7 +31,7 @@ function unhighlight(e) {
 formContainer.addEventListener('drop', handleFileDrop, false);
 
 // Add event listener for file upload using input field
-inputField.addEventListener('change', handleInputChange);
+fileInput.addEventListener('change', handleInputChange);
 
 function handleFileDrop(e) {
   e.preventDefault();
@@ -68,8 +68,7 @@ function handleFiles(files) {
         });
 
         // Update the file input with the dropped image files
-        const fileInput = document.getElementById('images');
-        fileInput.files = new FileList(imageFiles);
+        fileInput.files = FileList.from(imageFiles);
     } else {
         alert('Please drop only image files.');
     }
