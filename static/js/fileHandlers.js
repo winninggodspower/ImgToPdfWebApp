@@ -1,8 +1,12 @@
 // fileHandlers.js
 import { handleLongPressStart, handleLongPressEnd } from "./dragAndDrop.js";
+let mergeBtn = document.getElementById('mergeBtn')
 
 export function handleFiles(files) {
     console.log(files);
+
+    // make merge submit button visible
+    mergeBtn.classList.remove('invisible');
 
     // Filter out non-image files
     const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
@@ -24,9 +28,10 @@ export function handleFiles(files) {
             reader.readAsDataURL(file);
         });
 
+
         // Update the file input with the dropped image files
         const fileInput = document.getElementById('images');
-        fileInput.files = new FileList(imageFiles);
+        // fileInput.files = files
     } else {
         alert('Please drop only image files.');
     }

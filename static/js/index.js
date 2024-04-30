@@ -5,6 +5,7 @@ import { handleDragStart, handleDragOver, handleDrop, handleTouchMove, handleLon
 let formContainer = document.querySelector("form");
 let inputField = document.querySelector("input[name='images']");
 let previewArea = document.getElementById("previewArea");
+let mergeBtn = document.getElementById("mergeBtn");
 
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
   formContainer.addEventListener(eventName, preventDefaults, false);
@@ -30,5 +31,4 @@ previewArea.addEventListener('dragover', handleDragOver, false);
 previewArea.addEventListener('drop', handleDrop, false);
 
 // Add event listeners for long press
-// previewArea.addEventListener('touchstart', handleLongPressStart, false);
-// previewArea.addEventListener('touchend', handleLongPressEnd, false);
+mergeBtn.addEventListener('click', ()=>{formContainer.submit()})

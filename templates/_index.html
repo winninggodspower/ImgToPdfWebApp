@@ -6,23 +6,31 @@
 	<title>Notes Merger</title>
     <link rel="stylesheet" href="../static/css/output.css">
 </head>
-<body class="overflow-x-hidden">	
+<body class="">	
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
-    <main class="grid md:grid-cols-[1fr_auto] gap-4 mt-15 w-fit mx-auto">
-        <div class="grow flex flex-col items-center px-4 mb-6">
+    <nav class="px-4">
+        <div class="container h-10 max-w-5xl px-4 mx-auto my-5 shadow-lg rounded-3xl md:h-12">
+
+        </div>
+    </nav>
+
+    <main class="grid md:grid-cols-[1fr_auto] gap-4 mt-15 w-full mx-auto">
+        <div class="flex flex-col items-center max-w-full px-4 mb-6 grow">
             <lottie-player class="w-11/12 max-w-[350px] h-min" src="https://assets6.lottiefiles.com/private_files/lf30_y2ryub2r.json" background="transparent" speed="1" loop autoplay></lottie-player>
 
-            <form class="border-2 border-dashed border-blue-500 py-6 px-4 md:py-10 md:px-6 rounded-lg w-full max-w-[400px]" method="post" enctype="multipart/form-data" action="/process">
-                <img class="mx-auto" src="../static/img/picture-note-outline.png" width="55px" alt="">
-                <p class="opacity-80 text-gray-500 text-center mt-2 text-sm md:text-base">Drop in your note pictures here</p>
-                <p class="block text-center text-sm text-gray-500 opacity-80">or <label for="images" class="text-blue-500 underline cursor-pointer">upload files</label></p>
+            <form class="border-2 border-dashed border-blue-500 py-6 px-4 md:py-10 md:px-6 rounded-lg w-full max-w-[400px] text-gray-500 " method="post" enctype="multipart/form-data" action="/process">
+                <img class="max-w-full mx-auto" src="../static/img/picture-note-outline.png" width="55px" alt="">
+                <p class="hidden mt-2 text-sm text-center sm:block opacity-80 md:text-base">Drop in your note pictures here </p>
+                <p class="text-sm text-center opacity-80"> <span class="hidden sm:inline">or</span> <label for="images" class="text-blue-500 underline cursor-pointer">upload files</label></p>
                 <input class="hidden" type="file" name="images" id="images" accept="image/*" multiple required>
                 <input class="hidden" type='submit' value='Upload'>
             </form>
+            <button id="mergeBtn" class="invisible max-w-[400px] w-full px-4 py-3 mt-4 text-sm text-white transition-all bg-blue-600 rounded-lg hover:bg-blue-500 active:ring-blue-300 active:ring-4 active:shadow-sm shadow-blue-300 md:text-base">Merge Pictures</button>
+
         </div>
 
-        <div id="previewAreaWrapper" class="px-4 mx-auto max-w-[95vw] overflow-x-hidden">
+        <div id="previewAreaWrapper" class="max-w-full px-4 mx-auto overflow-x-hidden">
             <div id="previewArea" class="hidden flex-col items-center mx-auto w-[400px] max-w-full mb-6 md:mt-10 styled-border p-3 md:p-4">
                 <div class="rounded-xl mb-2 h-[80px] border-blue-300 border-2 bg-gray-100 bg-opacity-50 p-2 hover:shadow-md cursor-pointer">
                     <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
