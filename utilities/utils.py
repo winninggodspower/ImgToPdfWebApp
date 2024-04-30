@@ -7,7 +7,6 @@ import os
 
 class MergeImageToPdf:
     def __init__(self, images, pdf_path):
-        print(images)
         self.pdf_path = pdf_path
 
         with tempfile.TemporaryDirectory() as temp_directory:

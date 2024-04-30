@@ -1,0 +1,22 @@
+from decouple import config
+from flask import Flask
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config.from_object(config("APP_SETTINGS"))
+
+login_manager = LoginManager() 
+login_manager.init_app(app) 
+login_manager.login_view = "auth.login"
+
+bcrypt = Bcrypt(app)
+db = SQLAlchemy(app)
+
+# Registering blueprints
+from src.auth.views import auth_blueprint
+from src.core.views import core_blueprint
+
+app.register_blueprint(auth_blueprint)
+app.register_blueprint(core_blueprint)

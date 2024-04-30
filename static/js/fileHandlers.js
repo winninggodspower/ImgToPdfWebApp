@@ -11,6 +11,9 @@ export function handleFiles(files) {
     // Filter out non-image files
     const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
 
+    // Create a new DataTransfer object
+    const dataTransfer = new DataTransfer();
+
     if (imageFiles.length > 0) {
         // Clear previous previews
         previewArea.innerHTML = '';
@@ -18,6 +21,7 @@ export function handleFiles(files) {
         // Display previews for each image file
         imageFiles.forEach(file => {
             const reader = new FileReader();
+            dataTransfer.items.add(file);
             reader.onload = function (e) {
                 const img = document.createElement('img');
                 img.src = e.target.result;
@@ -31,7 +35,7 @@ export function handleFiles(files) {
 
         // Update the file input with the dropped image files
         const fileInput = document.getElementById('images');
-        // fileInput.files = files
+        fileInput.files = dataTransfer.files;
     } else {
         alert('Please drop only image files.');
     }
