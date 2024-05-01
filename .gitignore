@@ -27,3 +27,7 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+
+# database
+db.sqlite
+instance/
