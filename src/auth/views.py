@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, request, url_for, current_app
 from flask_login import login_user, current_user, login_required, logout_user, LoginManager
 
 from src import db, bcrypt, login_manager
@@ -10,7 +10,7 @@ auth_blueprint = Blueprint("auth", __name__)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.get(user_id)
 
 @auth_blueprint.route("/register", methods=["GET", "POST"])
 def register():
@@ -41,7 +41,11 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, request.form["password"]):
             login_user(user)
-            return redirect(url_for("core.home"))
+            redirect_url = request.args.get('next') or current_app.config.get('LOGIN_REDIRECT_URL')
+            if redirect_url:
+                return redirect(redirect_url)
+            else:
+                return redirect(url_for("core.home"))
         else:
             flash("Invalid email and/or password.", "danger")
             return render_template("auth/login.html", form=form)
@@ -52,4 +56,4 @@ def login():
 def logout():
     logout_user()
     flash("You were logged out.", "success")
-    return redirect(url_for("accounts.login"))
+    return redirect(url_for("auth.login"))

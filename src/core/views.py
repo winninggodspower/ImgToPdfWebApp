@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, flash, request, redirect, send_file
+from flask import Blueprint, render_template, flash, request, redirect, send_file, current_app
 import os
+from src import BASE_DIR
 
 from src.core.utils import MergeImageToPdf
 
@@ -19,7 +20,7 @@ def process():
         flash("no file uploaded")
 
     else:
-        pdf_path = os.path.join(core_blueprint.config["PDF_FOLDER"], "merge.pdf")
+        pdf_path = os.path.join(current_app.config["PDF_FOLDER"], "merge.pdf")
         MergeImageToPdf(images, pdf_path) 
 
         pdf_filename = os.path.split(pdf_path)[1]
@@ -29,4 +30,4 @@ def process():
 
 @core_blueprint.route("/pdf/<pdf_file>")
 def send_pdf(pdf_file):
-    return send_file(os.path.join(core_blueprint.config["PDF_FOLDER"], pdf_file)) 
+    return send_file(os.path.join(BASE_DIR, current_app.config["PDF_FOLDER"], pdf_file)) 

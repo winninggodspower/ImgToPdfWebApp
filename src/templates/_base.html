@@ -7,21 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
     {% block head %}{% endblock head %}
 </head>
-<body>
+<body class="bg-gray-100">
     <!-- messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
+    <div class="flex justify-center">
+      <div class="w-full md:w-1/2 lg:w-1/3">
         {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-         {{message}}
-         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="px-4 py-2 mb-4 bg-blue-100 border border-blue-400 text-blue-700 rounded-md flex items-center justify-between">
+         <span>{{ message }}</span>
+         <button type="button" class="ml-2 text-blue-500 hover:text-blue-700" aria-label="Close">&times;</button>
         </div>
         {% endfor %}
       </div>
-      <div class="col-md-4"></div>
     </div>
     {% endif %}
     {% endwith %}

@@ -1,43 +1,43 @@
 {% extends "_base.html" %}
 
+{% block head %}
+  <title>Login</title>
+{% endblock head %}
+
 {% block body %}
 
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <main class="form-signin w-100 m-auto">
+<div class="flex justify-center">
+  <div class="w-full md:w-1/2 lg:w-1/3">
+    <main class="mt-10 p-6 bg-white shadow-md rounded-md">
       <form role="form" method="post" action="">
         {{ form.csrf_token }}
-        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+        <h1 class="text-3xl mb-6 font-semibold text-center">Please sign in</h1>
 
-        <div class="form-floating">
-          {{ form.email(placeholder="email", class="form-control mb-2") }}
+        <div class="mb-4">
+          {{ form.email(placeholder="Email", class="w-full p-2 border border-gray-300 rounded-md") }}
           {{ form.email.label }}
-            {% if form.email.errors %}
-              {% for error in form.email.errors %}
-              <div class="alert alert-danger" role="alert">
-                {{ error }}
-              </div>
-              {% endfor %}
-            {% endif %}
+          {% if form.email.errors %}
+            {% for error in form.email.errors %}
+              <div class="text-red-600">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
         </div>
-        <div class="form-floating">
-          {{ form.password(placeholder="password", class="form-control mb-2") }}
+
+        <div class="mb-4">
+          {{ form.password(placeholder="Password", class="w-full p-2 border border-gray-300 rounded-md") }}
           {{ form.password.label }}
-            {% if form.password.errors %}
-              {% for error in form.password.errors %}
-                <div class="alert alert-danger" role="alert">
-                  {{ error }}
-                </div>
-              {% endfor %}
-            {% endif %}
+          {% if form.password.errors %}
+            {% for error in form.password.errors %}
+              <div class="text-red-600">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="text-center mt-3">New User? <a href="{{ url_for('auth.register') }}">Register now</a></p>
+
+        <button class="w-full py-2 mt-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600" type="submit">Sign in</button>
+        <p class="mt-4 text-center">New User? <a class="text-blue-500 hover:underline" href="{{ url_for('auth.register') }}">Register now</a></p>
       </form>
     </main>
   </div>
-  <div class="col-md-4"></div>
 </div>
 
 {% endblock body %}

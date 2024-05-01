@@ -4,7 +4,10 @@ from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-import sys, logging
+import sys, logging, os
+
+dir, _ = os.path.split(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(dir)
 
 app = Flask(__name__)
 app.config.from_object(config("APP_SETTINGS"))
