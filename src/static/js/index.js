@@ -1,11 +1,14 @@
 // index.js
+import { Draggable, store } from "@dflex/draggable";
 import { preventDefaults, highlight, unhighlight, handleFileDrop, handleInputChange } from "./eventHandlers.js";
-import { handleDragStart, handleDragOver, handleDrop, handleTouchMove, handleLongPressStart, handleLongPressEnd } from "./dragAndDrop.js";
+import { handleDragStart, handleDragOver, handleDrop} from "./dragAndDrop.js";
 
 let formContainer = document.querySelector("form");
 let inputField = document.querySelector("input[name='images']");
 let previewArea = document.getElementById("previewArea");
 let mergeBtn = document.getElementById("mergeBtn");
+
+// store.register({id: 'previewArea'})
 
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
   formContainer.addEventListener(eventName, preventDefaults, false);
@@ -29,6 +32,28 @@ inputField.addEventListener('change', handleInputChange);
 previewArea.addEventListener('dragstart', handleDragStart, false);
 previewArea.addEventListener('dragover', handleDragOver, false);
 previewArea.addEventListener('drop', handleDrop, false);
+
+
+// previewArea.addEventListener('mousedown', (e)=>{
+//   if (e.button === 0) {
+//     let dflexDnD = new Draggable(id, {x: e.clientX, y: e.clientY});
+//   }
+// }, false);
+
+// previewArea.addEventListener('mousemove', (e)=>{
+//   if (dflexDnD) {
+//     dflexDnD.dragAt(e.clientX, e.clientY); 
+//   }
+// }, false);
+
+// previewArea.addEventListener('drop', (e)=>{
+//   if (dflexDnD) {
+//     dflexDnD.endDragging();
+//     dflexDnD = null;
+//   }
+// }, false);
+
+
 
 // Add event listeners for long press
 mergeBtn.addEventListener('click', ()=>{formContainer.submit()})

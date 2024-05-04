@@ -1,6 +1,5 @@
 // fileHandlers.js
-import { handleLongPressStart, handleLongPressEnd } from "./dragAndDrop.js";
-let mergeBtn = document.getElementById('mergeBtn')
+let mergeBtn = document.getElementById('mergeBtn');
 
 export function handleFiles(files) {
     console.log(files);
@@ -36,6 +35,7 @@ export function handleFiles(files) {
         // Update the file input with the dropped image files
         const fileInput = document.getElementById('images');
         fileInput.files = dataTransfer.files;
+
     } else {
         alert('Please drop only image files.');
     }
@@ -46,10 +46,6 @@ export function addPreviewImage(img) {
   previewItem.classList.add('previewItem', 'rounded-xl', 'mb-2', 'h-[80px]', 'w-[400px]', 'max-w-full', 'border-blue-300', 'border-2', 'bg-gray-100', 'bg-opacity-50', 'p-2', 'hover:shadow-md', 'cursor-pointer');
   previewItem.appendChild(img);
   previewItem.setAttribute('draggable', 'true'); // Make the preview item draggable
-
-  // Add touch event listeners for long press
-  previewItem.addEventListener('touchstart', handleLongPressStart, false);
-  previewItem.addEventListener('touchend', handleLongPressEnd, false);
 
   previewArea.style.display = "flex"
   previewArea.appendChild(previewItem);
