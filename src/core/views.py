@@ -9,7 +9,7 @@ core_blueprint = Blueprint("core", __name__)
 
 @core_blueprint.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", user=current_user)
 
 @core_blueprint.route("/process", methods=["POST"])
 @login_required
@@ -23,7 +23,7 @@ def process():
 
     elif current_user.credits < current_app.config['CREDIT_PER_USE']:
         flash('you don\'t have enough credits. purhcase credit to complete this action', 'info')
-        
+
     else:
         pdf_path = os.path.join(current_app.config["PDF_FOLDER"], "merge.pdf")
         MergeImageToPdf(images, pdf_path) 
