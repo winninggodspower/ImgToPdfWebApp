@@ -31,3 +31,6 @@ htmlcov/
 # database
 db.sqlite
 instance/
+
+node_modules/
+package-lock.json

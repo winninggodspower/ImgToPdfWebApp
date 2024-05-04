@@ -29,7 +29,7 @@
             </svg>
             <span>250 coins</span>
         </div>
-        <button
+        <a href="{{ url_for('purchase.purchase') }}"
             class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-3xl px-3 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
@@ -37,7 +37,7 @@
                 <path d="M12 5v14"></path>
             </svg>
             <span>Purchase Coins</span>
-        </button>
+        </a>
         <span class="relative flex shrink-0 overflow-hidden rounded-full h-9 w-9 bg-slate-200">
             <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">JP</span>
         </span>
