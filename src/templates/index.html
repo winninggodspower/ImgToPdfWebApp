@@ -27,7 +27,7 @@
                 <path d="M7 6h1v4"></path>
                 <path d="m16.71 13.88.7.71-2.82 2.82"></path>
             </svg>
-            <span>250 coins</span>
+            <span>{{ user.credits }} coins</span>
         </div>
         <a href="{{ url_for('purchase.purchase') }}"
             class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-3xl px-3 flex items-center gap-2">
