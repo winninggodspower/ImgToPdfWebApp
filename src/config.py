@@ -16,6 +16,8 @@ class Config(object):
     DEBUG_TB_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     PDF_FOLDER = 'PDFILES'
+    CREDIT_PER_USE = 5
+    PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
 
 class DevelopmentConfig(Config):
     DEVELOPMENT = True

@@ -1,41 +1,84 @@
 {% extends "_base.html" %}
 
 {% block head %}
-  <title>Index</title>
+<title>Index</title>
 {% endblock head %}
 
 {% block body %}
-	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    
-    <nav class="px-4">
-        <div class="container h-10 max-w-5xl px-4 mx-auto my-5 shadow-lg rounded-3xl md:h-12">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
+<nav
+    class="container flex items-center justify-between h-10 max-w-5xl px-4 md:px-6 mx-auto my-5 shadow-lg rounded-3xl md:h-14 bg-white">
+    <div class="flex items-center justify-between gap-4">
+        <a class="flex items-center gap-2" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+            </svg>
+            <span class="sr-only">Acme Inc</span>
+        </a>
+    </div>
+    <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <circle cx="8" cy="8" r="6"></circle>
+                <path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path>
+                <path d="M7 6h1v4"></path>
+                <path d="m16.71 13.88.7.71-2.82 2.82"></path>
+            </svg>
+            <span>{{ user.credits }} coins</span>
         </div>
-    </nav>
+        <a href="{{ url_for('purchase.purchase') }}"
+            class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-3xl px-3 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+            </svg>
+            <span>Purchase Coins</span>
+        </a>
+        <span class="relative flex shrink-0 overflow-hidden rounded-full h-9 w-9 bg-slate-200">
+            <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">JP</span>
+        </span>
+    </div>
+</nav>
 
-    <main class="grid md:grid-cols-[1fr_auto] gap-4 mt-15 w-full mx-auto">
-        <div class="flex flex-col items-center max-w-full px-4 mb-6 grow">
-            <lottie-player class="w-11/12 max-w-[350px] h-min" src="https://assets6.lottiefiles.com/private_files/lf30_y2ryub2r.json" background="transparent" speed="1" loop autoplay></lottie-player>
+</header>
 
-            <form class="border-2 border-dashed border-blue-500 py-6 px-4 md:py-10 md:px-6 rounded-lg w-full max-w-[400px] text-gray-500 " method="post" enctype="multipart/form-data" action="/process">
-                <img class="max-w-full mx-auto" src="../static/img/picture-note-outline.png" width="55px" alt="">
-                <p class="hidden mt-2 text-sm text-center sm:block opacity-80 md:text-base">Drop in your note pictures here </p>
-                <p class="text-sm text-center opacity-80"> <span class="hidden sm:inline">or</span> <label for="images" class="text-blue-500 underline cursor-pointer">upload files</label></p>
-                <input class="hidden" type="file" name="images" id="images" accept="image/*" multiple required>
-                <input class="hidden" type='submit' value='Upload'>
-            </form>
-            <button id="mergeBtn" class="invisible max-w-[400px] w-full px-4 py-3 mt-4 text-sm text-white transition-all bg-blue-600 rounded-lg hover:bg-blue-500 active:ring-blue-300 active:ring-4 active:shadow-sm shadow-blue-300 md:text-base">Merge Pictures</button>
+<main class="grid md:grid-cols-[1fr_auto] gap-4 mt-15 w-full mx-auto">
+    <div class="flex flex-col items-center max-w-full px-4 mb-6 grow">
+        <lottie-player class="w-11/12 max-w-[350px] h-min"
+            src="https://assets6.lottiefiles.com/private_files/lf30_y2ryub2r.json" background="transparent" speed="1"
+            loop autoplay></lottie-player>
 
-        </div>
+        <form
+            class="border-2 border-dashed border-blue-500 py-6 px-4 md:py-10 md:px-6 rounded-lg w-full max-w-[400px] text-gray-500 "
+            method="post" enctype="multipart/form-data" action="/process">
+            <img class="max-w-full mx-auto" src="../static/img/picture-note-outline.png" width="55px" alt="">
+            <p class="hidden mt-2 text-sm text-center sm:block opacity-80 md:text-base">Drop in your note pictures here
+            </p>
+            <p class="text-sm text-center opacity-80"> <span class="hidden sm:inline">or</span> <label for="images"
+                    class="text-blue-500 underline cursor-pointer">upload files</label></p>
+            <input class="hidden" type="file" name="images" id="images" accept="image/*" multiple required>
+            <input class="hidden" type='submit' value='Upload'>
+        </form>
+        <button id="mergeBtn"
+            class="invisible max-w-[400px] w-full px-4 py-3 mt-4 text-sm text-white transition-all bg-blue-600 rounded-lg hover:bg-blue-500 active:ring-blue-300 active:ring-4 active:shadow-sm shadow-blue-300 md:text-base">Merge
+            Pictures</button>
 
-        <div id="previewAreaWrapper" class="max-w-full px-4 mx-auto overflow-x-hidden">
-            <div id="previewArea" class="hidden flex-col items-center mx-auto w-[400px] max-w-full mb-6 md:mt-10 styled-border p-3 md:p-4">
-                <div class="rounded-xl mb-2 h-[80px] border-blue-300 border-2 bg-gray-100 bg-opacity-50 p-2 hover:shadow-md cursor-pointer">
-                    <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
-                </div>
+    </div>
+
+    <div id="previewAreaWrapper" class="max-w-full px-4 mx-auto overflow-x-hidden">
+        <div id="previewArea"
+            class="hidden flex-col items-center mx-auto w-[400px] max-w-full mb-6 md:mt-10 styled-border p-3 md:p-4">
+            <div
+                class="rounded-xl mb-2 h-[80px] border-blue-300 border-2 bg-gray-100 bg-opacity-50 p-2 hover:shadow-md cursor-pointer">
+                <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
             </div>
         </div>
-    </main>
-		
-    <script src="../static/js/index.js" type="module"></script>
-{% endblock body %}	
+    </div>
+</main>
+
+<script src="../static/js/index.js" type="module"></script>
+{% endblock body %}

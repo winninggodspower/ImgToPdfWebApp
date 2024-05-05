@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     created_on = db.Column(db.DateTime, nullable=False)
+    credits = db.Column(db.Integer, default=20)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
     def __init__(self, email, password, is_admin=False):
