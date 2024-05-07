@@ -1,7 +1,7 @@
 // index.js
 import { preventDefaults, highlight, unhighlight, handleFileDrop, handleInputChange } from "./eventHandlers.js";
-import { handleDragStart, handleDragOver, handleDrop} from "./dragAndDrop.js";
 import { handleFileSubmit } from "./fileHandlers.js";
+import Sortable from "sortablejs";
 
 let formContainer = document.querySelector("form");
 let inputField = document.querySelector("input[name='images']");
@@ -32,11 +32,11 @@ formContainer.addEventListener('submit', handleFileSubmit, false)
 inputField.addEventListener('change', handleInputChange);
 
 
-// Event listeners for the rearranging phots
-// Add event listeners for drag and drop
-previewArea.addEventListener('dragstart', handleDragStart, false);
-previewArea.addEventListener('dragover', handleDragOver, false);
-previewArea.addEventListener('drop', handleDrop, false);
+// sortable js, for drag and drop
+new Sortable(previewArea, {
+  ghostClass: "sortable-ghost", 
+  animation: 150,
+})
 
 
 mergeBtn.addEventListener('click', ()=>{formSubmitBtn.click()})

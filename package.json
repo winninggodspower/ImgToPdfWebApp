@@ -15,7 +15,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@dflex/dnd": "^3.10.6",
-    "@dflex/draggable": "^3.10.6"
+    "sortablejs": "^1.15.2"
   }
 }
