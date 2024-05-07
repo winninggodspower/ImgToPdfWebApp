@@ -1,5 +1,6 @@
 // eventHandlers.js
-import { handleFiles, addPreviewImage } from "./fileHandlers.js";
+import { handleFiles } from "./fileHandlers.js";
+
 let formContainer = document.querySelector("form");
 
 export function preventDefaults(e) {
