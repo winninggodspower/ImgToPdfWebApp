@@ -77,8 +77,7 @@
                 <img class="h-full mx-auto" src="../static/img/picture-note-colored.png" alt="">
             </div>
         </div>
-    </div>
-</main>
-
-<script src="../static/js/index.js" type="module"></script>
-{% endblock body %}
+    </main>
+		
+    <script src="{{ url_for('static', filename='js/dist/bundle.js') }}" defer></script>
+{% endblock body %}	
