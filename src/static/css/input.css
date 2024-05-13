@@ -6,4 +6,20 @@
     .styled-border{
         @apply border-2 border-dashed border-blue-500 rounded-lg;
     }
+
+    .alert-success {
+        @apply border-green-400 text-green-700 bg-green-100;
+    }
+    
+    .alert-error {
+        @apply border-red-400 text-red-700 bg-red-100;
+    }
+    
+    .alert-info {
+        @apply border-blue-400 text-blue-700 bg-blue-100;
+    }
+    
+    .alert-warning {
+        @apply border-orange-400 text-orange-700 bg-orange-100;
+    }
 }
