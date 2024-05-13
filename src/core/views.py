@@ -14,7 +14,7 @@ def home():
 @core_blueprint.route("/process", methods=["POST"])
 @login_required
 def process():
-    image_orders = request.form.get('droppedFilesOrder')
+    image_orders = json.loads(request.form.get('droppedFilesOrder'))
 
     if 'images' not in request.files:
         # flash("No file uploaded")
@@ -26,7 +26,7 @@ def process():
         return jsonify({'message': 'No file uploaded'}), 400
 
     pdf_path = os.path.join(current_app.config["PDF_FOLDER"], "merge.pdf")
-    MergeImageToPdf(images, pdf_path) 
+    MergeImageToPdf(images, pdf_path, image_order=image_orders) 
 
     pdf_filename = os.path.split(pdf_path)[1]
 
