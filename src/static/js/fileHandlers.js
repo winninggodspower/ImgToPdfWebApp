@@ -1,5 +1,6 @@
 // fileHandlers.js
 let mergeBtn = document.getElementById('mergeBtn');
+import { Alert } from "./alert";
 import { updateDroppedFilesOrder } from "./dragAndDrop";
 
 export function handleFiles(files) {
@@ -66,13 +67,33 @@ export function handleFileSubmit(e) {
         body: formData
     })
     .then(response => {
-        return response.text();
+        if (response.ok && response.status === 200) {
+            return response.blob();
+        } else {
+            return response.json().then(errorData => {
+                throw new Error(errorData.message);
+            })
+        }
     })
-    .then(data=>{
-        console.log(data);
+    .then(pdfData =>{
+        // Create a new blob instance
+        const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
+        // Create a URL for the blob
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        // const iframe = popupWindow.document.createElement('iframe');
+        // iframe.src = pdfUrl;
+        // iframe.width = '100%';
+        // iframe.height = '100%';
+        // popupWindow.document.body.appendChild(iframe);
+
+        const pdfModal = document.getElementById('pdf-modal');
+        const pdfIframe = document.getElementById('pdf-iframe');
+        pdfModal.classList.remove('invisible');
+        pdfModal.classList.add('opacity-100');
+        pdfIframe.src = pdfUrl;
     })
     .catch(error => {
-        // Handle error
+        Alert(error.message, 'error');
     });
 
 };

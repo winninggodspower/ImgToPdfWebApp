@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, flash, request, redirect, send_file, current_app
+from flask import Blueprint, render_template, flash, request, redirect, send_file, current_app, jsonify
 from flask_login import login_required, current_user
-import os
+import os, json
 from src import BASE_DIR, db
 
 from src.core.utils import MergeImageToPdf
@@ -14,29 +14,36 @@ def home():
 @core_blueprint.route("/process", methods=["POST"])
 @login_required
 def process():
+    image_orders = request.form.get('droppedFilesOrder')
+
     if 'images' not in request.files:
-        flash("No file uploaded")
+        # flash("No file uploaded")
+        return jsonify({'message': 'No file uploaded'}), 400
     
     images = request.files.getlist("images")
     if not images:
-        flash("no file uploaded")
+        # flash("no file uploaded")
+        return jsonify({'message': 'No file uploaded'}), 400
 
-    elif current_user.credits < current_app.config['CREDIT_PER_USE']:
-        flash('you don\'t have enough credits. purhcase credit to complete this action', 'info')
+    pdf_path = os.path.join(current_app.config["PDF_FOLDER"], "merge.pdf")
+    MergeImageToPdf(images, pdf_path) 
 
-    else:
-        pdf_path = os.path.join(current_app.config["PDF_FOLDER"], "merge.pdf")
-        MergeImageToPdf(images, pdf_path) 
+    pdf_filename = os.path.split(pdf_path)[1]
 
-        pdf_filename = os.path.split(pdf_path)[1]
+    return redirect(f'/pdf/{pdf_filename}')
 
-        # reduce user credits
-        current_user.credits -= current_app.config['CREDIT_PER_USE']
-        db.session.commit()
+@core_blueprint.route("/ai-extract", methods=["POST"])
+@login_required
+def ai_text_extraction():
+    if current_user.credits < current_app.config['CREDIT_PER_USE']:
+        # flash('you don\'t have enough credits. purhcase credit to complete this action', 'info')
+        return jsonify({'message': 'you don\'t have enough credits. purhcase credit to complete this action'}), 400
+    
+    # extract text ai code here
 
-        return redirect(f'/pdf/{pdf_filename}')
-        
-    return redirect("/")
+    # reduce user credits after ai extraction
+    current_user.credits -= current_app.config['CREDIT_PER_USE']
+    db.session.commit()
 
 @core_blueprint.route("/pdf/<pdf_file>")
 def send_pdf(pdf_file):

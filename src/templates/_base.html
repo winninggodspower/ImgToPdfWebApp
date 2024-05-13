@@ -8,6 +8,15 @@
     {% block head %}{% endblock head %}
 </head>
 <body class="bg-gray-100">
+  <div class="md:w-1/2 lg:w-1/3 hidden"></div>
+
+    <!-- model to be used by jaascript -->
+    <div id="pdf-modal" class="fixed top-0 right-0 bottom-0 left-0 bg-gray-500 bg-opacity-50 flex justify-center items-center invisible opacity-0 z-10">
+      <div class="modal-content bg-white p-4 rounded shadow-xl w-full md:w-1/2 lg:w-5/12 h-[90%]">
+        <iframe id="pdf-iframe" src="" frameborder="0" class="w-full h-full"></iframe>
+      </div>
+    </div>
+
     <!-- messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
