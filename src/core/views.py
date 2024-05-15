@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, request, redirect, send_file, current_app, jsonify
 from flask_login import login_required, current_user
-import os, json
+import os, json, uuid
 from src import BASE_DIR, db
 
 from src.core.utils import MergeImageToPdf
@@ -25,7 +25,8 @@ def process():
         # flash("no file uploaded")
         return jsonify({'message': 'No file uploaded'}), 400
 
-    pdf_path = os.path.join(current_app.config["PDF_FOLDER"], "merge.pdf")
+    pdf_filename = f"{uuid.uuid4()}.pdf"
+    pdf_path = os.path.join(current_app.config["PDF_FOLDER"], pdf_filename)
     MergeImageToPdf(images, pdf_path, image_order=image_orders) 
 
     pdf_filename = os.path.split(pdf_path)[1]
