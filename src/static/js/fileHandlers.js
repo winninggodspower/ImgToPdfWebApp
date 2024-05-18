@@ -1,5 +1,6 @@
 // fileHandlers.js
 let mergeBtn = document.getElementById('mergeBtn');
+import { Modal } from "flowbite";
 import { Alert } from "./alert";
 import { updateDroppedFilesOrder } from "./dragAndDrop";
 
@@ -80,19 +81,20 @@ export function handleFileSubmit(e) {
         const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
         // Create a URL for the blob
         const pdfUrl = URL.createObjectURL(pdfBlob);
-        // const iframe = popupWindow.document.createElement('iframe');
-        // iframe.src = pdfUrl;
-        // iframe.width = '100%';
-        // iframe.height = '100%';
-        // popupWindow.document.body.appendChild(iframe);
 
         const pdfModal = document.getElementById('pdf-modal');
         const pdfIframe = document.getElementById('pdf-iframe');
-        pdfModal.classList.remove('invisible');
-        pdfModal.classList.add('opacity-100');
         pdfIframe.src = pdfUrl;
+
+        let modal = new Modal(pdfModal);
+        modal.show();
+
+        pdfModal.querySelector('[data-modal-hide').onclick = ()=>{
+            modal.hide();
+        }
     })
     .catch(error => {
+        console.log(error);
         Alert(error.message, 'error');
     });
 
