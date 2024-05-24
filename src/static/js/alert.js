@@ -33,6 +33,12 @@ export function Alert(message, type) {
 
     alert.innerHTML = alertContent;
 
+    // Add event listener to the close button
+    const closeButton = alert.querySelector('button');
+    closeButton.addEventListener('click', () => {
+        alert.remove();
+    });
+
     // Append alert to body
     document.body.appendChild(alert);
 }
