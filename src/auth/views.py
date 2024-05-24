@@ -1,5 +1,5 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for, current_app
-from flask_login import login_user, current_user, login_required, logout_user, LoginManager
+from flask_login import login_user, current_user, login_required, logout_user
 
 from src import db, bcrypt, login_manager
 from .models import User
@@ -41,6 +41,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, request.form["password"]):
             login_user(user)
+            flash('successfully logged in')
             redirect_url = request.args.get('next') or current_app.config.get('LOGIN_REDIRECT_URL')
             if redirect_url:
                 return redirect(redirect_url)
