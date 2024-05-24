@@ -56,6 +56,11 @@ export function handleFileSubmit(e) {
     // Prevent default form submission
     e.preventDefault();
 
+    // Disable the submit button to prevent multiple submissions
+    const submitButton = document.getElementById('mergeBtn');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Processing...';
+
     let fileDropForm = e.target;
     // Add dropped files order to form data
     const formData = new FormData(fileDropForm);
@@ -99,6 +104,10 @@ export function handleFileSubmit(e) {
     .catch(error => {
         console.log(error);
         Alert(error.message, 'error');
-    });
+    })
+    .finally(()=>{
+        submitButton.disabled = false;
+        submitButton.textContent = 'Merge notes'
+    })
 
 };
