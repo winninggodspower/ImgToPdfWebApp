@@ -73,7 +73,11 @@ export function handleFileSubmit(e) {
         body: formData
     })
     .then(response => {
-        console.log(response.status)
+        if (response.status === 401) {
+            // Redirect the user to the login page
+            window.location.href = '/login';
+            throw new Error('login to complete action');
+        }
         if (response.ok && response.status === 200) {
             return response.blob();
         } else {
@@ -83,7 +87,6 @@ export function handleFileSubmit(e) {
         }
     })
     .then(pdfData =>{
-        console.log(pdfData);
         // Create a new blob instance
         const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
         // Create a URL for the blob
