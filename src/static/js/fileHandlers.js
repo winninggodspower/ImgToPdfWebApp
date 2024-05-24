@@ -86,6 +86,9 @@ export function handleFileSubmit(e) {
         const pdfIframe = document.getElementById('pdf-iframe');
         pdfIframe.src = pdfUrl;
 
+        //set download link
+        pdfModal.querySelector('a').href = pdfUrl;
+
         let modal = new Modal(pdfModal);
         modal.show();
 
