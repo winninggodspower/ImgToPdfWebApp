@@ -12,8 +12,10 @@ def home():
     return render_template("index.html", user=current_user)
 
 @core_blueprint.route("/process", methods=["POST"])
-@login_required
 def process():
+    if not current_user.is_authenticated:
+        return jsonify({'message': 'Authentication required'}), 401
+    
     image_orders = json.loads(request.form.get('droppedFilesOrder'))
 
     if 'images' not in request.files:

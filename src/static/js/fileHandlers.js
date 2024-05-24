@@ -73,6 +73,7 @@ export function handleFileSubmit(e) {
         body: formData
     })
     .then(response => {
+        console.log(response.status)
         if (response.ok && response.status === 200) {
             return response.blob();
         } else {
@@ -82,6 +83,7 @@ export function handleFileSubmit(e) {
         }
     })
     .then(pdfData =>{
+        console.log(pdfData);
         // Create a new blob instance
         const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
         // Create a URL for the blob
