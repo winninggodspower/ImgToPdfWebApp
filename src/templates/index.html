@@ -7,60 +7,7 @@
 {% block body %}
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-<nav class="container max-w-5xl flex flex-wrap items-center justify-between mx-auto px-4 md:px-6 py-1 md:h-14 shadow-lg rounded-3xl my-5 bg-white">
-    <a class="flex items-center gap-2  space-x-3 rtl:space-x-reverse" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-            <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
-        </svg>
-        <span class="sr-only">Acme Inc</span>
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 border-gray-200 md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 rounded-3xl"
-        aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M1 1h15M1 7h15M1 13h15" />
-        </svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <div
-            class="font-medium relative z-10 flex flex-col gap-y-2 p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:border-transparent md:bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-            {% if user.is_authenticated %}
-                <!-- <div class="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                        <circle cx="8" cy="8" r="6"></circle>
-                        <path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path>
-                        <path d="M7 6h1v4"></path>
-                        <path d="m16.71 13.88.7.71-2.82 2.82"></path>
-                    </svg>
-                    <span>{{ user.credits }} coins</span>
-                </div>
-                <a href="{{ url_for('purchase.purchase') }}"
-                    class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-3xl px-3 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5v14"></path>
-                    </svg>
-                    <span>Purchase Coins</span>
-                </a> -->
-                <span class="relative flex shrink-0 overflow-hidden rounded-full h-9 w-9 bg-slate-200 ">
-                    <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">{{ user.email[0]
-                        }}</span>
-                </span>
-            {% else %}
-                <a href="{{ url_for('auth.login') }}"
-                class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-3xl px-3 flex items-center gap-2">
-                <span>Login</span>
-                </a>
-            {% endif %}
-        </div>
-    </div>
-</nav>
-
+{% include "components/navbar.html" %}
 
 <main class="grid md:grid-cols-[1fr_auto] gap-4 mt-15 w-full mx-auto">
     <div class="flex flex-col items-center max-w-full px-4 mb-6 grow">
