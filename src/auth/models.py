@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     created_on = db.Column(db.DateTime, nullable=False)
     credits = db.Column(db.Integer, default=20)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    created_pdf = db.relationship('CreatedPdf', backref='users', lazy=True)
 
     def __init__(self, email, password, is_admin=False):
         self.email = email

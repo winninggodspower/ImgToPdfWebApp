@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+
+{% block head %}
+<title>Index</title>
+{% endblock head %}
+
+{% block body %}
+
+{% include "components/navbar.html" %}
+
+<main>
+    <h1>Page is meant to display user pdf resources</h1>
+    <ul>
+    {% for pdf in  pdf_resources %}
+        <li>{{ pdf.title }}<li>
+    {% endfor %}
+    </ul>
+</main>
+
+
+{% endblock body %}
