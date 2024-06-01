@@ -92,19 +92,9 @@ export function handleFileSubmit(e) {
         // Create a URL for the blob
         const pdfUrl = URL.createObjectURL(pdfBlob);
 
-        const pdfModal = document.getElementById('pdf-modal');
-        const pdfIframe = document.getElementById('pdf-iframe');
-        pdfIframe.src = pdfUrl;
-
-        //set download link
-        pdfModal.querySelector('a').href = pdfUrl;
-
-        let modal = new Modal(pdfModal);
-        modal.show();
-
-        pdfModal.querySelector('[data-modal-hide').onclick = ()=>{
-            modal.hide();
-        }
+        // openPdf
+        openPdfModalWithData(pdfUrl)
+        
     })
     .catch(error => {
         console.log(error);
@@ -116,3 +106,30 @@ export function handleFileSubmit(e) {
     })
 
 };
+
+
+async function openPdfModalWithData(pdfUrl) {
+    const pdfModal = document.getElementById('pdf-modal');
+    const pdfIframe = document.getElementById('pdf-iframe');
+    
+    pdfIframe.src = pdfUrl;
+
+    //set download link
+    pdfModal.querySelector('a').href = pdfUrl;
+
+    // get current pdfTitle
+    let pdfData = await fetch('/resources/latest')
+    pdfData = await pdfData.json()
+    let pdfTitle = pdfData.title;
+
+    // set curet pdf title
+    pdfModal.querySelector('#pdf-title').innerHTML = pdfTitle;
+    // pdfModal.getElementById('pdf-title').inn
+
+    let modal = new Modal(pdfModal);
+    modal.show();
+
+    pdfModal.querySelector('[data-modal-hide').onclick = ()=>{
+        modal.hide();
+    }
+}

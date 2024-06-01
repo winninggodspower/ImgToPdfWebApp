@@ -27,7 +27,9 @@ app.logger.setLevel(logging.ERROR)
 from src.auth.views import auth_blueprint
 from src.core.views import core_blueprint
 from src.purchase.views import purchase_blueprint
+from src.ai.views import ai_blueprint
 
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(core_blueprint)
 app.register_blueprint(purchase_blueprint)
+app.register_blueprint(ai_blueprint)

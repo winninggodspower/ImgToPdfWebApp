@@ -45,23 +45,9 @@ def process():
 
     return redirect(f'/pdf/{pdf_filename}')
 
-@core_blueprint.route("/ai-extract", methods=["POST"])
-@login_required
-def ai_text_extraction():
-    if current_user.credits < current_app.config['CREDIT_PER_USE']:
-        # flash('you don\'t have enough credits. purhcase credit to complete this action', 'info')
-        return jsonify({'message': 'you don\'t have enough credits. purhcase credit to complete this action'}), 400
-    
-    # extract text ai code here and save to pdf
-    ai_extract = "text extracte by ai"
-
-    # save digital text to pdf table instance
-
-    # reduce user credits after ai extraction
-    current_user.credits -= current_app.config['CREDIT_PER_USE']
-    db.session.commit()
-
-    # return pdf file blob
+@core_blueprint.route("/pdf/<pdf_file>")
+def send_pdf(pdf_file):
+    return send_file(os.path.join(BASE_DIR, current_app.config["PDF_FOLDER"], pdf_file)) 
 
 @core_blueprint.route("/resources", methods=["GET"])
 @login_required
@@ -69,6 +55,11 @@ def pdf_resources():
     user_pdf_resources = CreatedPdf.query.filter_by(owner_id=current_user.id).all()
     return render_template('resource.html', pdf_resources=user_pdf_resources, user=current_user)
 
-@core_blueprint.route("/pdf/<pdf_file>")
-def send_pdf(pdf_file):
-    return send_file(os.path.join(BASE_DIR, current_app.config["PDF_FOLDER"], pdf_file)) 
+@core_blueprint.route("/resources/latest", methods=["GET"])
+@login_required
+def latest_resource():
+    user_latest_pdf_resource = CreatedPdf.query.filter_by(owner_id=current_user.id).first_or_404()
+    
+    return jsonify({
+        "title": user_latest_pdf_resource.title
+    }), 200  
