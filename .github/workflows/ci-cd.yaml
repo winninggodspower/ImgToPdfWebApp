@@ -26,7 +26,7 @@ jobs:
             cd /home/southupd/ImgToPdfWebApp
             git pull origin master
             pip install -r requirements.txt
-            flask db init
-            flask db upgrade
+            flask --app src db init
+            flask --app src db upgrade
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
