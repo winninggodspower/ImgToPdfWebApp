@@ -5,8 +5,9 @@ on:
     branches:
       - master
 jobs:
-  Deployment:
+  deployment:
     runs-on: ubuntu-latest
+    environment: "imges-to-pdf"
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       
