@@ -10,7 +10,7 @@ PDFILES/
 env/
 venv/
 .venv/
-env*
+.env
 build/
 *.egg
 *.egg-info/
