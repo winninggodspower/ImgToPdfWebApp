@@ -1,0 +1,31 @@
+name: GitHub Actions Deploymen
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  Deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: pulling latest changes from server and installing requirements.txt via ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.HOST_USERNAME }}
+          password: ${{ secrets.HOST_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            source /home/southupd/virtualenv/ImgToPdfWebApp/3.9/bin/activate
+            cd /home/southupd/ImgToPdfWebApp
+            git pull origin master
+            pip install -r requirements.txt
+            flask db init
+            flask db upgrade
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
