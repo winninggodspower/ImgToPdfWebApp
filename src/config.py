@@ -1,7 +1,6 @@
 from decouple import config
 
 DATABASE_URI = config("DATABASE_URL")
-print(DATABASE_URI)
 if DATABASE_URI.startswith("postgres://"):
     DATABASE_URI = DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
