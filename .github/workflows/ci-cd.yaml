@@ -27,5 +27,6 @@ jobs:
             git pull origin master
             pip install -r requirements.txt
             flask --app src db upgrade
+            npm run build
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
