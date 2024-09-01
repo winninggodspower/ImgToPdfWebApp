@@ -4,9 +4,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DATABASE_URI = os.getenv("DATABASE_URL")
-print(DATABASE_URI)
-# if DATABASE_URI.startswith("postgres://"):
-#     DATABASE_URI = DATABASE_URI.replace("postgres://", "postgresql://", 1)
+if DATABASE_URI.startswith("postgres://"):
+    DATABASE_URI = DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
 class Config(object):
     DEBUG = False
@@ -28,3 +27,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     WTF_CSRF_ENABLED = False
     DEBUG_TB_ENABLED = True
+
+class ProductionConfig(Config):
+    DEBUG = False
+    DEBUG_TB_ENABLED = False
