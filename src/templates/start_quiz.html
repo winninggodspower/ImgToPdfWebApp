@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <title>Muck Exam | NotePedia</title>
+{% endblock head %}
+
+{% block body %}
+    {% include "components/navbar.html" %}
+    <div id="root"></div>  <!-- React will mount here -->
+
+    {% if dev_server %}
+    <!-- Load from Webpack Dev Server -->
+    <script src="http://localhost:5000/static/js/dist/start_quiz.bundle.js"></script>
+    {% else %}
+    <!-- Load from Flask's static files -->
+    <script src="{{ url_for('static', filename='js/dist/start_quiz.bundle.js') }}"></script>
+    {% endif %}
+
+
+    <style>
+        html, body{
+            height: 100%;
+        }
+    </style>
+{% endblock %} 

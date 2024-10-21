@@ -4,8 +4,11 @@
   "main": "static/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack && npx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/output.css",
-    "watch": "concurrently \"webpack --watch\" \"npx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/output.css --watch\""
+    "build": "webpack --config webpack.config.js && npx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/output.css",
+    "watch-js": "webpack --watch",
+    "serve-js": "webpack serve",
+    "watch-css": "npx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/output.css --watch",
+    "start": "concurrently \"npm run watch-js\" \"npm run watch-css\" \"npm run serve-js\""
   },
   "author": "",
   "license": "ISC",
@@ -15,13 +18,22 @@
     "url": "https://github.com/winninggodspower/ImgToPdfWebApp.git"
   },
   "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "babel-loader": "^9.2.1",
     "concurrently": "^8.2.2",
+    "daisyui": "^4.12.13",
     "tailwindcss": "^3.4.10",
     "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
     "flowbite": "^2.5.1",
+    "lucide-react": "^0.446.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sortablejs": "^1.15.2"
   }
 }

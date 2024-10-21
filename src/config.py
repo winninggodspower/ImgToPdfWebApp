@@ -7,6 +7,11 @@ DATABASE_URI = os.getenv("DATABASE_URL")
 if DATABASE_URI.startswith("postgres://"):
     DATABASE_URI = DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
+PDF_FOLDER = 'PDFILES'
+# create pdf folder id it doesn't exist already
+if not os.path.isdir(PDF_FOLDER):
+    os.makedirs(PDF_FOLDER)
+
 class Config(object):
     DEBUG = False
     TESTING = False
