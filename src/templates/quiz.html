@@ -10,7 +10,7 @@
 
     {% if dev_server %}
     <!-- Load from Webpack Dev Server -->
-    <script src="http://localhost:5000/static/js/dist/quiz.bundle.js"></script>
+    <script src="http://localhost:3000/static/js/dist/quiz.bundle.js"></script>
     {% else %}
     <!-- Load from Flask's static files -->
     <script src="{{ url_for('static', filename='js/dist/quiz.bundle.js') }}"></script>

@@ -95,7 +95,7 @@ export default function Component({ quizUuid }) {
 
   if (quizCompleted) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-[calc(100vh-50px)] flex items-center justify-center p-4">
         <div className="card w-full max-w-2xl bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-2xl font-bold">Quiz Results</h2>
@@ -134,7 +134,7 @@ export default function Component({ quizUuid }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4">
       <div className="card w-full max-w-2xl bg-base-100 shadow-xl">
         <div className="card-body">
           <div className="flex justify-between items-center">

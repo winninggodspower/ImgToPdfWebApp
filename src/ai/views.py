@@ -12,35 +12,15 @@ from src.ai.utils import extract_text_from_images, extract_text_from_pdf, genera
 ai_blueprint = Blueprint("ai", __name__)
 
 @ai_blueprint.route('/quiz/')
+@login_required
 def quiz_start_view():
     return render_template('start_quiz.html', user=current_user, dev_server=True)
 
 # react template views
 @ai_blueprint.route('/quiz/<resource_uuid>')
+@login_required
 def quiz_view(resource_uuid):
     return render_template('quiz.html', user=current_user, dev_server=True)
-
-
-@ai_blueprint.route("/ai-extract", methods=["POST"])
-@login_required
-def ai_text_extraction():
-    if current_user.credits < current_app.config['CREDIT_PER_USE']:
-        return jsonify({'message': 'you don\'t have enough credits. purhcase credit to complete this action'}), 400
-    
-    # extract text ai code here and save to pdf
-    ai_extract = "text extracte by ai"
-
-    # save digital text to pdf table instance
-
-    # reduce user credits after ai extraction
-    current_user.credits -= current_app.config['CREDIT_PER_USE']
-    db.session.commit()
-
-    # return pdf file blob
-
-def create_ai_summary():
-    pass
-
 
 @ai_blueprint.route("/create-ai-quiz", methods=["POST"])
 def create_ai_quiz():

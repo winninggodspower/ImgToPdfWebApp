@@ -9,8 +9,12 @@ from src.core.utils import MergeImageToPdf
 core_blueprint = Blueprint("core", __name__)
 
 @core_blueprint.route("/")
+def index():
+    return render_template("landing_page.html", user=current_user,)
+
+@core_blueprint.route("/merge")
 def home():
-    return render_template("index.html", user=current_user)
+    return render_template("index.html", user=current_user,  dev_server=True)
 
 @core_blueprint.route("/process", methods=["POST"])
 def process():

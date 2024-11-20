@@ -42,5 +42,11 @@
         </div>
 </main>
 
-<script src="{{ url_for('static', filename='js/dist/bundle.js') }}"></script>
+    {% if dev_server %}
+    <!-- Load from Webpack Dev Server -->
+    <script src="http://localhost:3000/static/js/dist/index.bundle.js"></script>
+    {% else %}
+    <!-- Load from Flask's static files -->
+    <script src="{{ url_for('static', filename='js/dist/index.bundle.js') }}"></script>
+    {% endif %}
 {% endblock body %}
