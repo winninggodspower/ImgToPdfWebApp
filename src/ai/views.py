@@ -14,7 +14,6 @@ ai_blueprint = Blueprint("ai", __name__)
 @login_required
 def quiz_start_view():
     debug = current_app.config.get('DEBUG')
-    print(current_app.config)
     return render_template('start_quiz.html', user=current_user, dev_server=debug)
 
 # react template views

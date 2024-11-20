@@ -41,14 +41,14 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, request.form["password"]):
             login_user(user)
-            flash('successfully logged in')
+            flash('successfully logged in', 'success')
             redirect_url = request.args.get('next') or current_app.config.get('LOGIN_REDIRECT_URL')
             if redirect_url:
                 return redirect(redirect_url)
             else:
                 return redirect(url_for("core.home"))
         else:
-            flash("Invalid email and/or password.", "danger")
+            flash("Invalid email and/or password.", "error")
             return render_template("auth/login.html", form=form)
     return render_template('auth/login.html', form=form)
     

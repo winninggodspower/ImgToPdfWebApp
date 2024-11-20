@@ -24,12 +24,10 @@ def process():
     image_orders = json.loads(request.form.get('droppedFilesOrder'))
 
     if 'images' not in request.files:
-        # flash("No file uploaded")
         return jsonify({'message': 'No file uploaded'}), 400
     
     images = request.files.getlist("images")
     if not images:
-        # flash("no file uploaded")
         return jsonify({'message': 'No file uploaded'}), 400
 
     pdf_filename = f"{uuid.uuid4()}.pdf"
