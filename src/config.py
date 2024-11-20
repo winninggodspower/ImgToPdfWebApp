@@ -13,7 +13,6 @@ if not os.path.isdir(PDF_FOLDER):
     os.makedirs(PDF_FOLDER)
 
 class Config(object):
-    DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = os.getenv("SECRET_KEY", default="guess-me")
@@ -28,8 +27,8 @@ class Config(object):
     PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
 
 class DevelopmentConfig(Config):
-    DEVELOPMENT = True
     DEBUG = True
+    DEVELOPMENT = True
     WTF_CSRF_ENABLED = False
     DEBUG_TB_ENABLED = True
 

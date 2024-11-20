@@ -1,8 +1,6 @@
-import os
 import re
-from flask import Blueprint, current_app, json, jsonify, render_template, request
+from flask import Blueprint, json, jsonify, render_template, request, current_app
 from flask_login import login_required, current_user
-from werkzeug.utils import secure_filename
 
 from src import db
 from src.ai.models import QuizResource
@@ -11,16 +9,19 @@ from src.ai.utils import extract_text_from_images, extract_text_from_pdf, genera
 
 ai_blueprint = Blueprint("ai", __name__)
 
+
 @ai_blueprint.route('/quiz/')
 @login_required
 def quiz_start_view():
-    return render_template('start_quiz.html', user=current_user, dev_server=True)
+    debug = current_app.config.get('DEBUG')
+    print(current_app.config)
+    return render_template('start_quiz.html', user=current_user, dev_server=debug)
 
 # react template views
 @ai_blueprint.route('/quiz/<resource_uuid>')
 @login_required
 def quiz_view(resource_uuid):
-    return render_template('quiz.html', user=current_user, dev_server=True)
+    return render_template('quiz.html', user=current_user, dev_server=current_app.config.get('DEBUG'))
 
 @ai_blueprint.route("/create-ai-quiz", methods=["POST"])
 def create_ai_quiz():
@@ -63,6 +64,7 @@ def create_ai_quiz():
 
     # Return the generated quiz UUID
     return jsonify({'uuid': quiz_resource.uuid}), 201
+
 
 @ai_blueprint.route('/get-quiz-questions/<resource_uuid>/', methods=["GET"])
 def start_quiz(resource_uuid):
