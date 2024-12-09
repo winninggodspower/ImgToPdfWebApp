@@ -22,15 +22,19 @@ export const sendQuizResourceRequest = async (formData) => {
         method: 'POST',
         body: formData, // Pass the FormData object
       });
-  
+      
       if (!response.ok) {
-        throw new Error("Something went wrong during the quiz creation.");
+        const errorDetails = await response.json().catch(() => null); // Safely parse JSON
+        console.log(response.status);
+        
+        const errorMessage = errorDetails?.message || 'Something went wrong during the quiz creation.';
+        throw new Error(errorMessage);
       }
   
       let data = await response.json();
       return data; // Return the parsed data (containing the UUID)
     } catch (error) {
-      console.error("Error while sending quiz resource:", error);
+      console.error(error?.message || "Error while sending quiz resource:", error);
       throw error; // Re-throw the error for further handling
     }
   };

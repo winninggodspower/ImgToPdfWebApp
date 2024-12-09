@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Clock, RotateCcw, Check, X } from "lucide-react"
+import { toast } from "sonner"
 
 export default function Component({ quizUuid }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -16,23 +17,26 @@ export default function Component({ quizUuid }) {
 
   const fetchQuestions = async () => {
     try {
-      const response = await fetch(`/get-quiz-questions/${quizUuid}/`)
+      const response = await fetch(`/get-quiz-questions/${quizUuid}/`);
       if (!response.ok) {
-        throw new Error('Network response was not ok')
+        const errorDetails = await response.json().catch(() => null); // Safely parse JSON
+        const errorMessage = errorDetails?.message || 'Network response was not ok';
+        throw new Error(errorMessage);
       }
-      const data = await response.json()
+      const data = await response.json();
       console.log(data);
-      const quizArray = data[Object.keys(data)[0]]
-       
-      setQuizData(quizArray)
-      setSelectedAnswers(new Array(quizArray.length).fill(""))
-      setLoading(false)
+      const quizArray = data[Object.keys(data)[0]];
+  
+      setQuizData(quizArray);
+      setSelectedAnswers(new Array(quizArray.length).fill(''));
+      setLoading(false);
     } catch (error) {
-      console.error('Error fetching questions:', error)
-      setError('Failed to load quiz questions. Please try again later.')
-      setLoading(false)
+      toast.error(error?.message || 'Something went wrong');
+      console.error('Error fetching questions:', error);
+      setError(error?.message || 'Failed to load quiz questions. Please try again later.');
+      setLoading(false);
     }
-  }
+  };  
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -85,7 +89,7 @@ export default function Component({ quizUuid }) {
   }
 
   if (error) {
-    return <div className="alert alert-error">{error}</div>
+    return <div className="alert alert-error max-w-5xl mx-auto">{error}</div>
   }
 
   if (loading) {

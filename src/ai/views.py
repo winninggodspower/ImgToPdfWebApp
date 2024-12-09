@@ -22,17 +22,23 @@ def quiz_start_view():
 def quiz_view(resource_uuid):
     return render_template('quiz.html', user=current_user, dev_server=current_app.config.get('DEBUG'))
 
+
 @ai_blueprint.route("/create-ai-quiz", methods=["POST"])
+@login_required
 def create_ai_quiz():
     resource_type = request.form.get('resource_type')
     text_content = None
+
+    # check if the user still have credits
+    if current_user.credits < 5:
+        return jsonify({'message': 'You don\'t have enough credit to create a quiz'}), 403
 
     if resource_type == 'text':
         text_content = request.form.get('text')
 
     elif resource_type == 'pdf':
         if 'pdfFile' not in request.files:
-            return jsonify({'error': 'No PDF file provided'}), 400
+            return jsonify({'message': 'No PDF file provided'}), 400
         
         pdf_file = request.files['pdfFile']
         if pdf_file:
@@ -41,7 +47,7 @@ def create_ai_quiz():
 
     elif resource_type == 'picture':
         if 'pictureFile' not in request.files:
-            return jsonify({'error': 'No picture files provided'}), 400
+            return jsonify({'message': 'No picture files provided'}), 400
         
         print('picture was found')
         picture_files = request.files.getlist('pictureFile')
@@ -50,7 +56,7 @@ def create_ai_quiz():
 
     else:
         print('None. nah wah ohh')
-        return jsonify({'error': 'resource not supplied'}), 400
+        return jsonify({'message': 'resource not supplied'}), 400
 
 
     # Create a new quiz resource
@@ -66,7 +72,12 @@ def create_ai_quiz():
 
 
 @ai_blueprint.route('/get-quiz-questions/<resource_uuid>/', methods=["GET"])
+@login_required
 def start_quiz(resource_uuid):
+    # check if the user still have credits
+    if current_user.credits < 5:
+        return jsonify({'message': 'You don\'t have enough credit to create a quiz'}), 403
+    
     # get resource by resource uuid
     quiz_resource = QuizResource.query.filter_by(uuid=resource_uuid).first()
 
@@ -80,6 +91,10 @@ def start_quiz(resource_uuid):
         raw_questions = generate_questions_from_pdf_text(quiz_resource.text_content)
     elif quiz_resource.resource_type == 'picture':
         raw_questions = generate_questions_from_text(quiz_resource.text_content)
+
+    # reduce credit
+    current_user.credits -= 5
+    db.session.commit()
 
     cleaned_json = re.sub(r'^```json\n|\n```$', '', raw_questions.strip())
     try:

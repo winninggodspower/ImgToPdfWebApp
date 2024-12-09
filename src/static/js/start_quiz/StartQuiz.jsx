@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react"
 import { BookOpen, FileText, Image, Upload } from "lucide-react"
+import { toast } from 'sonner'
 import { prepareQuizResourceData, sendQuizResourceRequest } from './quizService';
 
 export default function Component() {
@@ -24,7 +25,7 @@ export default function Component() {
         // Redirect to quiz page with quiz UUID
         window.location.href = `/quiz/${response.uuid}`;
       } catch (error) {
-        alert(error.message);
+        toast.error(error?.message || 'something went wrong')
       }
       console.log(`Starting quiz with resource type: ${resourceType}`);
     } else {
