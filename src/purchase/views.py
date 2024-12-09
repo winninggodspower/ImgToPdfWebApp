@@ -8,7 +8,7 @@ purchase_blueprint = Blueprint("purchase", __name__)
 
 @purchase_blueprint.route("/purchase")
 def purchase():
-    return render_template('purchase_coin.html')
+    return render_template('purchase_coin.html', user=current_user)
 
 @purchase_blueprint.route("/checkout", methods=['POST'])
 @login_required
