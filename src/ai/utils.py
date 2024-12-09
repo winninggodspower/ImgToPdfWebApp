@@ -70,6 +70,8 @@ def generate_questions_from_text(text: str) -> list:
         please output the information in structured JSON format without using markdown code blocks
 
         {text}
+
+        your response should have a key of questions
     '''
     response = model.generate_content(prompt)
     return response.text

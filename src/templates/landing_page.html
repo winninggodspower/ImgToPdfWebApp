@@ -5,11 +5,215 @@
 {% endblock head %}
 
 {% block body %}
-    <div class="flex flex-col h-60 justify-center">
-        <h1 class="text-2xl text-center">Landing Page from landingpage.html</h1>
-        <div class="flex justify-center gap-4 mt-2">
-            <a href="/merge" class="btn btn-primary">Merge Note</a>
-            <a href="/quiz" class="btn">Muck Exam</a>
+
+{% include "components/navbar.html" %}
+
+<main class="flex-1">
+    <section class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Transform Your Notes into Quizzes</h1>
+                <p class="py-6">Upload your notes and let AI generate personalized quizzes and mock exams to supercharge your learning. <span class="text-primary font-semibold">Predict exam questions</span> by analyzing your teacher's notes!</p>
+                <div class="mb-8">
+                    <a href="/quiz" class="btn btn-primary">Get Started For Free</a>
+                    <a href="#how-it-works" class="btn btn-outline ml-2">Learn More</a>
+                </div>
+                <div class="aspect-[16/9]">
+                   <iframe class="w-full h-64 rounded-lg shadow-lg" src="https://www.youtube.com/embed/oFvDJ-fHJ0E" title="2025 tesla cybertruck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="features" class="py-12 pb-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Easy Upload</h3>
+                        <p>Upload your notes in text, PDF, or image format.</p>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">AI-Powered</h3>
+                        <p>Our AI generates quizzes tailored to your notes.</p>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Exam Prediction</h3>
+                        <p>Generate probable exam questions from your teacher's notes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-12 pb-20 bg-base-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center">
+                    <div class="rounded-full bg-primary text-primary-content p-3 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1. Upload Your Notes</h3>
+                    <p>Upload your study materials or teacher's notes in various formats.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="rounded-full bg-primary text-primary-content p-3 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">2. AI Generates Quizzes</h3>
+                    <p>Our AI analyzes your notes and creates custom quizzes and potential exam questions.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="rounded-full bg-primary text-primary-content p-3 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3. Practice and Improve</h3>
+                    <p>Take quizzes, predict exam questions, and enhance your learning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Other Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div id="quiz-generator" class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Quiz Generator</h3>
+                        <p>Transform your notes into interactive quizzes and predict potential exam questions.</p>
+                        <div class="card-actions justify-end mt-4">
+                            <button class="btn btn-primary">Try Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="pdf-merger" class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">PDF Merger</h3>
+                        <p>Easily combine multiple notes images into a single PDF file.</p>
+                        <div class="card-actions justify-end mt-4">
+                            <button class="btn btn-primary">Try Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-base-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center">Try It Now</h2>
+            <div id="root" class="max-w-md mx-auto">
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Credit Packages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Free Plan</h3>
+                        <p class="text-4xl font-bold">20 Credits</p>
+                        <p class="text-2xl font-semibold mt-2">$0</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Generate 5 quizzes
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Merge unlimited PDFs
+                            </li>
+                        </ul>
+                        <div class="card-actions justify-end mt-6">
+                            <button class="btn btn-primary">Start Free</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Starter Pack</h3>
+                        <p class="text-4xl font-bold">100 Credits</p>
+                        <p class="text-2xl font-semibold mt-2">$2</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Generate 20 quizzes
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Merge unlimited PDFs
+                            </li>
+                        </ul>
+                        <div class="card-actions justify-end mt-6">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Pro Pack</h3>
+                        <p class="text-4xl font-bold">500 Credits</p>
+                        <p class="text-2xl font-semibold mt-2">$8</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Generate 50 quizzes
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Merge 100 PDFs
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                Priority support
+                            </li>
+                        </ul>
+                        <div class="card-actions justify-end mt-6">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if dev_server %}
+    <!-- Load from Webpack Dev Server -->
+    <script src="http://localhost:3000/static/js/dist/start_quiz.bundle.js"></script>
+    {% else %}
+    <!-- Load from Flask's static files -->
+    <script src="{{ url_for('static', filename='js/dist/start_quiz.bundle.js') }}"></script>
+    {% endif %}
+
+</main>
 {% endblock %}

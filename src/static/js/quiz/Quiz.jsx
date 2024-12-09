@@ -22,9 +22,10 @@ export default function Component({ quizUuid }) {
       }
       const data = await response.json()
       console.log(data);
+      const quizArray = data[Object.keys(data)[0]]
        
-      setQuizData(data.questions)
-      setSelectedAnswers(new Array(data.questions.length).fill(""))
+      setQuizData(quizArray)
+      setSelectedAnswers(new Array(quizArray.length).fill(""))
       setLoading(false)
     } catch (error) {
       console.error('Error fetching questions:', error)

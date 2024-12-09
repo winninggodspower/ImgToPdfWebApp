@@ -10,7 +10,7 @@ core_blueprint = Blueprint("core", __name__)
 
 @core_blueprint.route("/")
 def index():
-    return render_template("landing_page.html", user=current_user,)
+    return render_template("landing_page.html", user=current_user,  dev_server=current_app.config.get('DEBUG'))
 
 @core_blueprint.route("/merge")
 def home():

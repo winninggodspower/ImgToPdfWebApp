@@ -81,7 +81,6 @@ def start_quiz(resource_uuid):
     elif quiz_resource.resource_type == 'picture':
         raw_questions = generate_questions_from_text(quiz_resource.text_content)
 
-    print(raw_questions)
     cleaned_json = re.sub(r'^```json\n|\n```$', '', raw_questions.strip())
     try:
         questions = json.loads(cleaned_json)
